@@ -16,16 +16,20 @@ unit_central = {
     "pound": 454
 }
 
-amount = eval(input("How much? "))
-amount = float(amount)
+keep_going =""
+while keep_going == ""
+    amount = eval(input("How much? "))
+    amount = float(amount)
 
-unit = input("Unit?" )
+    unit = input("Unit?" )
 
-if unit in unit_central:
-    mult_by = unit_central.get(unit)
-    amount = amount * mult_by
-    print("Amount in ml {}".format(amount))
-else:
-    print("{} is unchanged".format(amount))
+    if unit in unit_central:
+        mult_by = unit_central.get(unit)
+        amount = amount * mult_by
+        print("Amount in ml {}".format(amount))
+    else:
+        print("{} is unchanged".format(amount))
+
+    keep_going = input("<enter> or q ")
 
 
