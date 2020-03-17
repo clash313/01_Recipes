@@ -92,6 +92,5 @@ while stop != "xxx":
         ingredients.append("{} units {}".format(amount, get_ingredient))
 
 
-
 # Output list
 print(ingredients)
