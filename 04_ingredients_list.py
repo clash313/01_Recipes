@@ -25,6 +25,8 @@ def not_blank(question, error_msg, num_ok):
             continue
         else:
             return response
+
+
 # Main Routine...
 
 # Set up empty ingredient list
@@ -34,7 +36,7 @@ ingredients = []
 stop = ""
 while stop != "xxx":
     # Ask user for ingredient (via not blankfunction)
-    get_ingredient = not_blank("Please type in an ingredient name: "
+    get_ingredient = not_blank("Please type in an ingredient name: ",
                                "This can't be blank",
                                "yes")
 

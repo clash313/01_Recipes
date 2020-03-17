@@ -8,9 +8,13 @@ def num_check(question):
 
     valid = False
     while not valid:
-        try:
-            response = float(input(question))
+        response = input(question)
 
+        if response.lower() == "xxx":
+            return response
+
+        try:
+            response = float(response)
             if response <= 0:
                 print(error)
             else:
@@ -18,6 +22,7 @@ def num_check(question):
 
         except ValueError:
             print(error)
+
 
 # Not blank Function goes here
 def not_blank(question, error_msg, num_ok):
@@ -43,10 +48,12 @@ def not_blank(question, error_msg, num_ok):
             continue
         else:
             return response
+
+
 # Main Routine...
 
 # Replace line below with component3 in due course...
-scale_factor = float(input("Scale Factor: "))
+scale_factor = eval(input("Scale Factor: "))
 
 # Set up empty ingredient list
 ingredients = []
@@ -56,26 +63,33 @@ stop = ""
 while stop != "xxx":
 
     amount = num_check("What is the amount for the ingredients? ")
-    scaled = amount * scale_factor
-
-    # Ask user for ingredient (via not blankfunction)
-    get_ingredient = not_blank("Please type in an ingredient name: "
-                               "This can't be blank",
-                               "yes")
 
     # Stop looping if exit code is typed and there are more
     # than 2 ingredients...
-    if get_ingredient.lower()=="xxx" and len(ingredients) > 1:
+    if amount == "xxx" and len(ingredients) > 1:
         break
 
-    elif get_ingredient.lower() == "xxx" and len(ingredients) <2:
+    elif amount == "xxx" and len(ingredients) <2:
         print("you need at least two ingredients in teh list.  "
               "Please add more ingredients.")
 
     # If exit code is not entered,add ingredient to list
     else:
-        ingredients.append(get_ingredient)
+        # Ask user for ingredient (via not blank function)
+        get_ingredient = not_blank("Please type in an ingredient name: ",
+                                   "This can't be blank",
+                                   "yes")
+        amount = float(amount) * scale_factor
 
+        # Remove decimal point for whole numbers
+        if amount % 1 == 0:
+            amount = int(amount)
+        elif amount * 10 % 1 == 0:
+            amount = "{:.1f}".format(amount)
+        else:
+            amount = "{:.2f}".format(amount)
+
+        ingredients.append("{} units {}".format(amount, get_ingredient))
 
 
 
