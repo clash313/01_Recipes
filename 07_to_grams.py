@@ -17,8 +17,7 @@ for row in csv_groceries:
 
 print(food_dictionary)
 
-keep_going = "" \
-             ""
+keep_going = ""
 while keep_going == "":
     amount = eval(input("How much? "))
     amount = float(amount)
