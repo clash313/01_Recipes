@@ -29,7 +29,7 @@ def unit_checker():
         print("you choose {}".format(unit_tocheck))
         return unit_tocheck
 
-    elif unit_tocheck == "T" or unit_tocheck.lowe() in tablespoon:
+    elif unit_tocheck == "T" or unit_tocheck.lower() in tablespoon:
         return "tbs"
     elif unit_tocheck.lower() in teaspoon:
         return "tsp"
