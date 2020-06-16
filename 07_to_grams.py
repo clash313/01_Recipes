@@ -23,7 +23,7 @@ while keep_going == "":
     amount = float(amount)
 
     # Get ingredient and change it to match dictionary
-    ingredient = input("ingredient: ")
+    ingredient = input("ingredient: ").lower()
 
     if ingredient in food_dictionary:
         mult_by = food_dictionary.get(ingredient)
