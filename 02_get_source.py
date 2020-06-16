@@ -4,7 +4,6 @@
 #Allow users to specify a custom error message
 # Allow users to specify whether numbers are allowed
 
-
 # Not Blank Function goes here
 def not_blank(question, error_msg, num_ok):
     error = error_msg
