@@ -25,6 +25,7 @@ def num_check(question):
         except ValueError:
             print(error)
 
+serving_size = num_check("What is the recipe serving size? ")
 
 # Main Routine goes here
 dodgy_sf = "yes"
