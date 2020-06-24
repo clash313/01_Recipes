@@ -38,7 +38,38 @@ def num_check(question):
         try:
             response = float(input(question))
 
-            if response
+            if response <= 0:
+                print(error)
+            else:
+                return response
+
+        except ValueError:
+            print(error)
+
+def get_sf():
+    serving_size = num_check("What is the recipe serving size? ")
+
+    # Main Routine goes here
+    dodgy_sf = "yes"
+    while dodgy_sf == "yes":
+
+        desired_size = num_check("How many servings are needed? ")
+
+        scale_factor = desired_size / serving_size
+
+        if scale_factor < 0.25:
+            dodgy_sf = input("Warning: This scale factor is very small and you "
+                             "might struggle to accurately weigh the ingredients.  \n"
+                             "Do you want to fix this and make more servings? ").lower()
+        elif scale_factor > 4:
+            dodgy_sf = input("Warning: This scale factor is quite large - you might"
+                             "have issues with mixing bowl volumes and oven space.  "
+                             "\nDo you want to fix this and make a smaller"
+                             "batch? ").lower()
+        else:
+            dodgy_sf = "no"
+
+    return scale_factor
 
 # ***** Main Routine ******
 
@@ -51,12 +82,18 @@ recipe_name = not_blank("What is the recipe name? ",
                         "The recipe name can't be blank and can't contain numbers, ",
                         "no")
 # Ask user where the recipe is originally from (numbers OK)
-source = not_blank("Where is the recipe from? "
-                   "The recipe source can't be blank,"
+source = not_blank("Where is the recipe from? ",
+                   "The recipe source can't be blank",
                    "yes")
 
 
 # Get serving sizes and scale factor
+scale_factor = get_sf()
+print(scale_factor)
 
-#looop
+# looop for each ingredient...
+
+# Get ingredient amount
+# Get ingredient name
+# Get unit
 
