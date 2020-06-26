@@ -71,7 +71,6 @@ def get_sf():
 
     return scale_factor
 
-
  # Function to get (and check amount, unit and ingredient)
 def get_all_ingredients():
     all_ingredients = []
@@ -99,12 +98,15 @@ def get_all_ingredients():
             else:
                 all_ingredients.append(get_recipe_line)
 
+    return all_ingredients
+
 
 # ***** Main Routine ******
 
 # set up Dictionaries
 
 # set up list to hold 'modernised' ingredients
+modernised_recipe = []
 
 # Ask user for recipe name and check its not blank
 recipe_name = not_blank("What is the recipe name? ",
@@ -123,12 +125,61 @@ scale_factor = get_sf()
 full_recipe = get_all_ingredients()
 
 # Split each line of the recipe into amount, unit and ingredient...
+mixed_regex= "\d{1,3}\s\d{1,3}\/\d{1,3}"
+convert = "yes"
 
+for recipe_line in full_recipe:
+    recipe_line = recipe_line.strip()
 
+    # Get amount...
+    if re.match(mixed_regex, recipe_line):
+        # Get mixed number by matching the regex
+        pre_mixed_num = re.match(mixed_regex, recipe_line)
+        mixed_num = pre_mixed_num.group()
 
-# Convert unit to ml
-# Convert from ml to g
+        # Replace space with a + sign...
+        amount = mixed_num.replace(" ", "+")
+        # Change the string into a decimal
+        amount = eval(amount)
+        amount = amount * scale_factor
+
+        # Get unit and ingredients...
+        compile_regex = re.compile(mixed_regex)
+        print(compile_regex)
+        unit_ingredient = re.split(compile_regex, recipe_line)
+        unit_ingredient = (unit_ingredient[1]).strip()  # remove extra white space
+
+    else:
+        get_amount = recipe_line.split(" ", 1)  # splits line at first space
+
+        try:
+            amount = eval(get_amount[0])    # convert amount to float if possible
+        except NameError:
+            amount = get_amount[0]
+            modernised_recipe.append(recipe_line)
+            convert = "no"
+
+        unit_ingredient = get_amount[1]
+
+    # Get unit and ingredient...
+    get_unit = unit_ingredient.split(" ", 1)    # splits text at first space
+
+    unit = get_unit[0]
+    # convert into ml
+
+    num_spaces = recipe_line.count(" ")
+    if num_spaces > 1:
+        ingredient = get_unit[1]
+        # convert into g
+    else:
+        modernised_recipe.append("{} {}".format(amount, unit_ingredient))
+        continue
+
+    modernised_recipe.append("{} {} {}")
+
 # Put updated ingredient in list
 
 # Output ingredient list
+for item in modernised_recipe:
+    print(item)
 
