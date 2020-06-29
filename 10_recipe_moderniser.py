@@ -154,6 +154,7 @@ for recipe_line in full_recipe:
 
         try:
             amount = eval(get_amount[0])    # convert amount to float if possible
+            amount = amount * scale_factor
         except NameError:
             amount = get_amount[0]
             modernised_recipe.append(recipe_line)
@@ -175,7 +176,7 @@ for recipe_line in full_recipe:
         modernised_recipe.append("{} {}".format(amount, unit_ingredient))
         continue
 
-    modernised_recipe.append("{} {} {}")
+    modernised_recipe.append("{} {} {}".format(amount, unit_ingredient))
 
 # Put updated ingredient in list
 
