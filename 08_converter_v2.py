@@ -21,14 +21,15 @@ def unit_checker():
 
     # Abbreviation lists
     teaspoon = ["tsp", "teaspoon", "t"]
-    tablespoon = ["tbs", "tablespoon", "T", "tbsp"]
+    tablespoon = ["tbs", "tablespoon", "T", "tbsp", "tablespoons"]
     ounce = ["oz", "ounce", "fl oz", "ounces"]
     cup = ["c", "cup", "cups"]
     pint = ["p", "pt", "fl pt"]
     quart = ["q", "qt", "fl qt"]
     mls = ["ml", "milliliter", "millilitre"]
-    litre = ["litre", "litre", "1"]
+    litre = ["litre", "liter", "1"]
     pound = ["pound", "1b", "#"]
+    grams = ["g", "gram"]
 
     if unit_tocheck == "":
     # print("you choose {}".format(unit_tocheck))
